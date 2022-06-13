@@ -9,12 +9,13 @@ app.use(express.json());
 
 // import routes
 const devicesRoute = require("./routes/devices");
+app.use("/devices",devicesRoute);
 
-app.use("/posts",devicesRoute);
+
 
 // routing
 app.get("/", (req,res) => {
-    res.send("We are at home");
+    res.send("HOME SWEET HOME");
 })
 
 // connect to db
