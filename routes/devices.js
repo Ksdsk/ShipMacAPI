@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Device = require("../models/Device");
+const oui = require("oui");
 
 // get back all the devices 
 router.get("/", async (req,res) => {
@@ -48,7 +49,9 @@ router.delete("/:deviceAddress", async (req,res) => {
 router.post("/", async (req,res) => {
     const device = new Device({
         address: req.body.address,
-        description: req.body.description
+        description: req.body.description,
+        oui: oui(req.body.address).split("\n")[0],
+        oui_long: oui(req.body.address)
     });
 
     try {

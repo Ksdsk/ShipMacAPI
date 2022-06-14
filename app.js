@@ -3,6 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 require('dotenv/config');
 
+// CORS
+const cors = require("cors");
+app.use(cors())
 
 // middleware
 app.use(express.json());
@@ -10,7 +13,6 @@ app.use(express.json());
 // import routes
 const devicesRoute = require("./routes/devices");
 app.use("/devices",devicesRoute);
-
 
 
 // routing

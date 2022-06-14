@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const DeviceSchema = mongoose.Schema({
+    oui: {
+        type: String,
+        required: true
+    },
+    oui_long: {
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         required: true
