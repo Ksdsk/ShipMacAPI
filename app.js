@@ -25,6 +25,8 @@ app.get("/", (req,res) => {
 // connect to db
 mongoose.connect(process.env.DB_CONNECTION, () => {
     console.log("CONNECTED TO DB!");
+}).catch(error => {
+    console.log(error);
 })
 
 // How do we start listening to the server?
