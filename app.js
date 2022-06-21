@@ -14,6 +14,8 @@ app.use(express.json());
 const devicesRoute = require("./routes/devices");
 app.use("/devices",devicesRoute);
 
+const ouiLookupRoute = require("./routes/ouilookup");
+app.use("/oui",ouiLookupRoute);
 
 // routing
 app.get("/", (req,res) => {

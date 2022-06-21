@@ -5,6 +5,7 @@ const oui = require("oui");
 
 // get back all the devices 
 router.get("/", async (req,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const devices = await Device.find();
         res.json(devices);
@@ -18,6 +19,7 @@ router.get("/", async (req,res) => {
 
 // get a certain device
 router.get("/:deviceAddress", async (req,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const device = await Device.find({
             address: req.params.deviceAddress
@@ -30,8 +32,9 @@ router.get("/:deviceAddress", async (req,res) => {
 
 // delete a certain device
 router.delete("/:deviceAddress", async (req,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
-        const device = await Device.remove({
+        const device = await Device.deleteMany({
             address: req.params.deviceAddress
         })
         res.json({
@@ -47,11 +50,12 @@ router.delete("/:deviceAddress", async (req,res) => {
 
 // posts a device
 router.post("/", async (req,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     const device = new Device({
         address: req.body.address,
         description: req.body.description,
-        oui: oui(req.body.address).split("\n")[0],
-        oui_long: oui(req.body.address)
+        oui: oui(req.body.address) != null ? oui(req.body.address).split("\n")[0] : "Unregistered",
+        oui_long: oui(req.body.address) != null ? oui(req.body.address) : "Unregistered OUI\n This MAC address does not have a registered OUI.\n Try checking your spelling!"
     });
 
     try {
@@ -67,6 +71,7 @@ router.post("/", async (req,res) => {
 
 // update a device
 router.patch("/:deviceAddress", async (req,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const device = await Device.updateOne(
             { address: req.params.deviceAddress },
