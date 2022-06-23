@@ -1,9 +1,17 @@
+/**
+ * Routes for /device requests
+ */
+
+// Imports
 const express = require("express");
 const router = express.Router();
 const Device = require("../models/Device");
 const oui = require("oui");
 
-// get back all the devices 
+/**
+ * GET /devices
+ * Used for getting all devices in the database.
+ */
 router.get("/", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     try {
@@ -17,7 +25,10 @@ router.get("/", async (req,res) => {
 
 });
 
-// get a certain device
+/**
+ * GET /devices/:deviceAddress
+ * Used for getting a device by deviceAddress (MAC Address).
+ */
 router.get("/:deviceAddress", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     try {
@@ -30,7 +41,10 @@ router.get("/:deviceAddress", async (req,res) => {
     }
 })
 
-// delete a certain device
+/**
+ * DELETE /devices/:deviceAddress
+ * Used for deleting a device by deviceAddress (MAC Address).
+ */
 router.delete("/:deviceAddress", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     try {
@@ -48,9 +62,14 @@ router.delete("/:deviceAddress", async (req,res) => {
 })
 
 
-// posts a device
+/**
+ * POST /devices
+ * Used for adding a device to the database.
+ */
 router.post("/", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
+
+    // define the device
     const device = new Device({
         address: req.body.address,
         description: req.body.description,
@@ -69,7 +88,10 @@ router.post("/", async (req,res) => {
 
 });
 
-// update a device
+/**
+ * PATCH /devices/:deviceAddress
+ * Used for updating a device by deviceAddress (MAC Address).
+ */
 router.patch("/:deviceAddress", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     try {

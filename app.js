@@ -1,3 +1,9 @@
+/**
+ * app.js
+ * Root of the API application.
+ */
+
+// Imports
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -10,10 +16,11 @@ app.use(cors())
 // middleware
 app.use(express.json());
 
-// import routes
+// import device routes
 const devicesRoute = require("./routes/devices");
 app.use("/devices",devicesRoute);
 
+// import oui routes
 const ouiLookupRoute = require("./routes/ouilookup");
 app.use("/oui",ouiLookupRoute);
 
@@ -29,5 +36,5 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
     console.log(error);
 })
 
-// How do we start listening to the server?
+// Listen with Heroku's port or 8080
 app.listen(process.env.PORT || 8080);
