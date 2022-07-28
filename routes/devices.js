@@ -18,7 +18,7 @@ router.get("/", async (req,res) => {
 
         const { exec } = require("child_process");
         
-        exec("ls -la", (err, stdout, stderr) => {
+        exec("python3 hello_world.py", (err, stdout, stderr) => {
             if (err) {
                 console.log(err);
                 return;
