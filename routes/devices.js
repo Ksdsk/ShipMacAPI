@@ -15,6 +15,20 @@ const oui = require("oui");
 router.get("/", async (req,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     try {
+
+        const { exec } = require("child_process");
+        
+        exec("ls -la", (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log(stdout);
+        });
+
+
+
+
         const devices = await Device.find();
         res.json(devices);
     } catch(err) {
