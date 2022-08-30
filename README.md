@@ -159,7 +159,6 @@ Project Link: [https://github.com/ksdsk/shipmacapi](https://github.com/ksdsk/shi
 ## Acknowledgments
 
 * Thanks to my team for supporting me when I look like a sleepless panda typing away at work
-* Thanks to my COOP workplace for being cool and letting me work on this project
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
